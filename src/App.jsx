@@ -7,11 +7,9 @@ import MainLayouts from './layouts/mainLayouts';
 import LoginPage from './Pages/login';
 import CartList from './Pages/carts';
 import { CartProvider } from './components/cartContext';
+import { AdminProductProvider } from './components/adminProduct';
 
-// import AddPage from './pages/addProduct';
-// import DataProducts from './pages/dataProduct';
-// import EditPage from './pages/editProduct';
-// import ViewPage from './pages/viewPages';
+
 
 
 
@@ -42,30 +40,34 @@ const router = createBrowserRouter([ //array object yang me-representasikan obje
         path:"cart",
         element:<CartList />
       }
-      // {
-      //   path:"ProductData",
-      //   element:<DataProducts />
-      // },
-      //      {
-      //   path:"add",
-      //   element:<AddPage />
-      // },
-      // {
-      //   path:"edit",
-      //   element:<EditPage />
-      // },
-      // {
-      //   path:"view",
-      //   element:<ViewPage />
-      // },
       ]
     },
+    {
+      path:"/admin",
+      element:<BackofficeLayouts />,
+      children:[
+        {
+          path:"login",
+          element:<AdminLogin />
+        },
+        {
+          path:"products",
+          element:<ProductList />
+        },
+        {
+          path:"login",
+          element:<AdminLogin />
+        },
+      ]
+    }
 ]);
 
 function App() {
   return(
     <CartProvider>
+      <AdminProductProvider>
       <RouterProvider router={router} />;
+     </AdminProductProvider>
     </CartProvider>
   )
 }
