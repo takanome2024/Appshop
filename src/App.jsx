@@ -8,10 +8,7 @@ import LoginPage from './Pages/login';
 import CartList from './Pages/carts';
 import { CartProvider } from './components/cartContext';
 import { AdminProductProvider } from './components/adminProduct';
-
-
-
-
+import ProductDetailPage from './Pages/ProductDetail';
 
 
 const router = createBrowserRouter([ //array object yang me-representasikan object path
@@ -22,6 +19,10 @@ const router = createBrowserRouter([ //array object yang me-representasikan obje
       {
         index: true,
         element: <HomePage />
+      },
+      {
+        path:"product/:id",
+        element:<ProductDetailPage />
       }
     ]
   },
