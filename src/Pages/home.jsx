@@ -16,7 +16,7 @@ export default function HomePage() {
     const [filterStatus, setFilterStatus] = useState("");
     const [lastDoc, setLastDoc] = useState(null);
     const [hasMore, setHasMore] = useState(true);
-    const pageSize = 2;
+    const pageSize = 8;
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
