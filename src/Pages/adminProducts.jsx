@@ -152,7 +152,7 @@ export default function AdminProductsPage() {
               <th>Stocks</th>
               <th>Category</th>
               <th>Description</th>
-              <th>Status</th>
+              {/* <th>Status</th> */}
               <th>Create At</th>
               <th>Actions</th>
             </tr>
@@ -167,7 +167,7 @@ export default function AdminProductsPage() {
                 <td>{p.stocks}</td>
                 <td>{p.categories}</td>
                 <td>{p.desc}</td>
-                <td>{p.status}</td>
+                {/* <td>{p.status}</td> */}
                 <td>{formatDate(p.createdAt)}</td>
                 <td className="flex gap-2">
                   <button className="btn btn-sm btn-primary"
