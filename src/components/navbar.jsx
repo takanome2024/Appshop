@@ -10,6 +10,8 @@ import { Auth } from "../configs/firebase";
 import Swal from 'sweetalert2';
 import toast, { Toaster } from 'react-hot-toast';
 import { CartContext } from "./cartContext";
+import { FaHome } from 'react-icons/fa';
+import { AiFillProduct } from 'react-icons/ai';
 
 
 export default function Navbar() {
@@ -17,7 +19,7 @@ export default function Navbar() {
   const [checkAuth, setCheckAuth] = useState(true)
   const navigate = useNavigate();
   const notify = () => toast('Logout has been successfully');
-  const {cartItems}=useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   useEffect(() => {
     const unlogin = onAuthStateChanged(Auth, (user) => {
@@ -51,45 +53,37 @@ export default function Navbar() {
           <img src={logo} alt="logo" className="h-12 sm:h-14 lg:h-18 max-w-full object-contain" />
         </div>
         {/* nav desktop start */}
-        <ul className="menus hidden lg:flex">
-          <li className="dropdown dropdown-hover">
-            <button onClick={() => navigate("/")} className="btn m-1 bg-transparent text-white hover:text-yellow-200 border-0 shadow-none capitalize">home</button>
-            {/* <div
-              tabIndex={0}
-              role="button"
-              className="btn m-1 bg-transparent text-white border-0 shadow-none capitalize"
-            >
-              home
-            </div> */}
+        <ul className="menus  flex-row hidden lg:flex gap-5">
+          <li>
+            <FaHome
+              onClick={() => navigate("/")}
+              className="text-white text-lg self-center cursor-pointer"
+            />
           </li>
-          {isLoggedin && (
-            <li className="dropdown dropdown-hover">
-              <button onClick={() => navigate("/auth/ProductData")} className="btn m-1 bg-transparent text-white hover:text-yellow-200 border-0 shadow-none capitalize">product list</button>
-            </li>
-          )}
-          <li className="dropdown dropdown-hover">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn m-1 bg-transparent text-white hover:text-yellow-200 border-0 shadow-none capitalize"
-            >
-              about us
-            </div>
+          <li>
+            <AiFillProduct
+              onClick={() => navigate("/auth/products")}
+              className="text-white text-lg self-center cursor-pointer"
+            />
           </li>
-
+          <li>
+            <FaSearch
+              className="text-white text-lg self-center hidden lg:flex"
+            />
+          </li>
         </ul>
+
         {/* nav desktop end */}
         {/* hamburger start */}
         <div className="others flex gap-4 aligns-center">
 
           <>
-            <FaSearch className="text-white text-lg self-center hidden lg:flex" />
             {isLoggedin && (<FaBell className="text-white text-lg self-center" />)}
-             {isLoggedin && (<div className="relative flex items-center cursor-pointer" onClick={()=>navigate("/auth/cart")}>
-              <FaShoppingCart className="text-white text-lg" />{cartItems.length>0&&(
-              <div className="absolute -top-2 -right-2 bg-red-800 text-white text-xs font-bold rounded-full px-2 py-0.5">
-                {cartItems.length}
-              </div>
+            {isLoggedin && (<div className="relative flex items-center cursor-pointer" onClick={() => navigate("/auth/cart")}>
+              <FaShoppingCart className="text-white text-lg" />{cartItems.length > 0 && (
+                <div className="absolute -top-2 -right-2 bg-red-800 text-white text-xs font-bold rounded-full px-2 py-0.5">
+                  {cartItems.length}
+                </div>
               )}
             </div>)}
 
@@ -134,20 +128,13 @@ export default function Navbar() {
                   <li className="collapse collapse-arrow bg-base-100">
                     <input type="radio" name="my-accordion-2" defaultChecked />
                     <button
-                      onClick={() => navigate("/auth/ProductData")}
+                      onClick={() => navigate("/auth/products")}
                       className="btn m-1 bg-transparent text-green-700 border-0 shadow-none capitalize"
                     >
                       Product List
                     </button>
                   </li>
                 )}
-
-                <li className="collapse bg-base-100">
-                  <input type="radio" name="my-accordion-2" defaultChecked />
-                  <div className="btn m-1 bg-transparent text-green-700 border-0 shadow-none capitalize">
-                    About Us
-                  </div>
-                </li>
                 <div className="buttons flex justify-around mt-2">
                   {!checkAuth && (
                     isLoggedin ? (
