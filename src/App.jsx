@@ -13,6 +13,7 @@ import { AdminProductProvider } from './components/adminProduct';
 
 
 
+
 const router = createBrowserRouter([ //array object yang me-representasikan object path
   {
     path: "/",
@@ -40,24 +41,6 @@ const router = createBrowserRouter([ //array object yang me-representasikan obje
         path:"cart",
         element:<CartList />
       }
-      ]
-    },
-    {
-      path:"/admin",
-      element:<BackofficeLayouts />,
-      children:[
-        {
-          path:"login",
-          element:<AdminLogin />
-        },
-        {
-          path:"products",
-          element:<ProductList />
-        },
-        {
-          path:"login",
-          element:<AdminLogin />
-        },
       ]
     }
 ]);
